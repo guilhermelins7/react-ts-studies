@@ -1,5 +1,5 @@
 import React from "react";
-import "./style.scss";
+import styles from "./Lista.module.scss";
 
 // Functional component, forma mais simples e moderna de criar componentes em React:
 function Lista() {
@@ -18,12 +18,12 @@ function Lista() {
     },
   ];
   return (
-    <aside className="listaTarefas">
+    <aside className={styles.listaTarefas}>
       <h2> Estudos do dia </h2>
       <ul>
         {tarefas.map((item, index) => (
           // key é uma propriedade obrigatória para cada item da lista, para o React identificar cada item:
-          <li key={index} className="item">
+          <li key={index} className={styles.item}>
             <h3>{item.tarefa}</h3>
             <span>{item.tempo}</span>
           </li>
