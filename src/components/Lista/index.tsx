@@ -6,14 +6,17 @@ import Item from "./Item";
 function Lista() {
   const tarefas = [
     {
+      id: crypto.randomUUID(),
       tarefa: "React",
       tempo: "02:00:00",
     },
     {
+      id: crypto.randomUUID(),
       tarefa: "JavaScript",
       tempo: "01:00:00",
     },
     {
+      id: crypto.randomUUID(),
       tarefa: "typescript",
       tempo: "00:30:00",
     },
@@ -22,10 +25,11 @@ function Lista() {
     <aside className={styles.listaTarefas}>
       <h2> Estudos do dia </h2>
       <ul>
-        {tarefas.map((item, index) => (
+        {tarefas.map((item) => (
           <Item
-            // key é uma propriedade obrigatória para cada item da lista, para o React identificar cada item:
-            key={index}
+            // key é uma propriedade obrigatória para cada item da lista, para o React fazer a ligação VDOM <> DOM:
+            key={item.id}
+            id={item.id} // Passando valor de 'key' para visualização VDOM <> DOM
             tarefa={item.tarefa}
             tempo={item.tempo}
             // ou desestruturando: {...item}
