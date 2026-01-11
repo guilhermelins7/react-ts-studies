@@ -1,32 +1,12 @@
-import React, { useState } from "react";
 import styles from "./Lista.module.scss";
 import Item from "./Item";
+import { ITarefa } from "../../types/ITarefas";
 
 // Functional component, forma mais simples e moderna de criar componentes em React:
-function Lista() {
-  const [ tarefas, setTarefas ] = useState([
-    {
-      id: crypto.randomUUID(),
-      tarefa: "React",
-      tempo: "02:00:00",
-    },
-    {
-      id: crypto.randomUUID(),
-      tarefa: "JavaScript",
-      tempo: "01:00:00",
-    },
-    {
-      id: crypto.randomUUID(),
-      tarefa: "typescript",
-      tempo: "00:30:00",
-    },
-  ]);
+function Lista( { tarefas }: { tarefas:  ITarefa[] } ) {
   return (
     <aside className={styles.listaTarefas}>
-      <h2 onClick={() => {
-        console.log("h2 clicado:", tarefas);
-        setTarefas([...tarefas, { id: crypto.randomUUID(), tarefa: "Estudar estados", tempo: "05:00:00" }])
-      }}> Estudos do dia </h2>
+      <h2> Estudos do dia </h2>
       <ul>
         {tarefas.map((item) => (
           <Item
