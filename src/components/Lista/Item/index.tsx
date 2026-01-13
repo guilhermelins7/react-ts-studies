@@ -1,13 +1,8 @@
+import { ITarefa } from '../../../types/ITarefas';
 import styles from '../Lista.module.scss';
 
-interface ItemProps {
-    tarefa: string,
-    tempo: string,
-    id: string // Propriedade apenas para visualização da key VDOM <> DOM
-}
-
-export default function Item({tarefa, tempo, id }: ItemProps) {
-    console.log(`Item ${tarefa} component key: ${id}`);
+export default function Item({tarefa, tempo, id, selecionado, completado }: ITarefa) {
+    console.log('Item atual:', {tarefa, tempo, id, selecionado, completado });
 
     return (
         <li className={styles.item}>

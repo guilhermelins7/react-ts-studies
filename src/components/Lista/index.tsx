@@ -15,6 +15,8 @@ function Lista( { tarefas }: { tarefas:  ITarefa[] } ) {
             id={item.id} // Passando valor de 'key' para visualização VDOM <> DOM
             tarefa={item.tarefa}
             tempo={item.tempo}
+            selecionado={item.selecionado}
+            completado={item.completado}            
             // ou desestruturando: {...item}
           />
         ))}

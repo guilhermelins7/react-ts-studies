@@ -13,7 +13,19 @@ class Formulario extends React.Component<{
 
   adicionarTarefa(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    this.props.setTarefas(tarefasAntigas => [...tarefasAntigas, { ...this.state, id: crypto.randomUUID() }]);
+    this.props.setTarefas(tarefasAntigas => [
+      ...tarefasAntigas,
+      {
+        ...this.state,
+        selecionado: false,
+        completado: false,
+        id: crypto.randomUUID()
+      }
+    ]);
+    this.setState({
+      tarefa: "",
+      tempo: "00:00"
+    });
   }
 
   render() {
