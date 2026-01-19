@@ -1,4 +1,3 @@
-import React from "react";
 import Formulario from "../components/Formulario";
 import Lista from "../components/Lista";
 import style from "./App.module.scss";
@@ -8,10 +7,32 @@ import { ITarefa } from "../types/ITarefas";
 
 function App() {
   const [ tarefas, setTarefas ] = useState<ITarefa[]>([]);
+  const [ selecionado, setSelecionado ] = useState<ITarefa>();
+
+  function selecionaTarefa(tarefaSelecionada: ITarefa) {
+    setSelecionado(tarefaSelecionada);
+    setTarefas(tarefasAnteriores => tarefasAnteriores.map(tarefa => ({
+      ...tarefa,
+      selecionado: toggleSelect(tarefa, tarefaSelecionada)
+    })));
+    console.log("Tarefa selecionada:", tarefaSelecionada);
+  }
+
+  function toggleSelect(tarefa: ITarefa, tarefaSelecionada: ITarefa) {
+    if(tarefa.id === tarefaSelecionada.id) {
+      if(tarefa.selecionado) return false;
+      return true;
+    }
+    return false;
+  }
+
   return (
     <div className={style.AppStyle}>
       <Formulario setTarefas={setTarefas} />
-      <Lista tarefas={tarefas} />
+      <Lista 
+        tarefas={tarefas} 
+        selecionaTarefa={selecionaTarefa}
+      />
       <Cronometro/>
     </div>
   );
