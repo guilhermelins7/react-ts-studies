@@ -1,5 +1,5 @@
 import { ITarefa } from "../../../types/ITarefas";
-import styles from "../Lista.module.scss";
+import styles from "./Item.module.scss";
 
 interface Props extends ITarefa {
   tarefas: ITarefa[];
