@@ -2,12 +2,19 @@ import Formulario from "../components/Formulario";
 import Lista from "../components/Lista";
 import style from "./App.module.scss";
 import { Cronometro } from "../components/Cronometro";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { ITarefa } from "../types/ITarefas";
 
 function App() {
-  const [ tarefas, setTarefas ] = useState<ITarefa[]>([]);
+  const [ tarefas, setTarefas ] = useState<ITarefa[]>(() => {
+    const tarefasSalvas = localStorage.getItem('tarefas');
+    return tarefasSalvas ? JSON.parse(tarefasSalvas) : [];
+  });
   const [ selecionado, setSelecionado ] = useState<ITarefa>();
+
+  useEffect(() => {
+    localStorage.setItem('tarefas', JSON.stringify(tarefas));
+  }, [tarefas]);
 
   function selecionaTarefa(tarefaSelecionada: ITarefa) {
     setSelecionado(tarefaSelecionada);
